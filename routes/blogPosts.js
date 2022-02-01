@@ -31,4 +31,13 @@ router.get('/', async(req,res) => {
     }
 })
 
+router.get('/one', async(req,res) => {
+    try {
+        const getPosts = await BlogPost.find().findOne()
+        res.send(getPosts)
+    } catch(err) {
+        res.send(`ERROR: ${err.message}<br>${err.stack}`)
+    }
+})
+
 module.exports = router
