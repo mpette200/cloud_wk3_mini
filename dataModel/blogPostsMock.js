@@ -3,24 +3,27 @@ const { add } = require("nodemon/lib/rules")
 const blogPostModel = function(blogPostData) {
     this.data = blogPostData
 }
-blogPostModel.storage = []
 blogPostModel.find = function() {
-    var ret = Promise.resolve(blogPostModel.storage)
+    if (this.then) {
+        var ret = this.then(value => value + ' called find.')
+    } else {
+        ret = Promise.resolve('called find.')
+    }
     addNestedMethods(ret)
     return ret
 }
-
 blogPostModel.findOne = function() {
-    var ret = blogPostModel.storage[0]
+    if (this.then) {
+        var ret = this.then(value => value + ' called findOne.')
+    } else {
+        ret = Promise.resolve('called findOne.')
+    }
     addNestedMethods(ret)
     return ret
 }
-
 blogPostModel.prototype.save = async function() {
-    blogPostModel.storage.push(this.data)
-    return this.data
+    return 'called save to db. '
 }
-
 var addNestedMethods = function(p) {
     p.find = blogPostModel.find
     p.findOne = blogPostModel.findOne

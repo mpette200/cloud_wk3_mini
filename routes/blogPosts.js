@@ -18,7 +18,7 @@ router.post('/', express.json(), async (req, res) => {
         const postToSave = await postData.save()
         res.send(postToSave)
     } catch(err) {
-        res.send({message: err})
+        res.send({message: err.stack})
     }
 })
 
@@ -27,7 +27,7 @@ router.get('/', async(req,res) => {
         const getPosts = await BlogPost.find()
         res.send(getPosts)
     } catch(err) {
-        res.send({message:err})
+        res.send({message: err.stack})
     }
 })
 
@@ -36,7 +36,7 @@ router.get('/one', async(req,res) => {
         const getPosts = await BlogPost.find().findOne()
         res.send(getPosts)
     } catch(err) {
-        res.send(`ERROR: ${err.message}<br>${err.stack}`)
+        res.send({message: err.stack})
     }
 })
 
