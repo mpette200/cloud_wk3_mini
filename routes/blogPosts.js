@@ -4,7 +4,6 @@ const router = express.Router()
 const BlogPost = require('../dataModel/blogPostsMock')
 
 router.post('/', express.json(), async (req, res) => {
-    // console.log(req.body)
     const postData = new BlogPost({
         user: req.body.user,
         title: req.body.title,
