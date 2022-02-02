@@ -1,7 +1,7 @@
 const express = require('express')
 const router = express.Router()
 
-const BlogPost = require('../dataModel/blogPostsMock')
+const BlogPost = require('../dataModel/blogPostsMockClassic')
 
 router.post('/', express.json(), async (req, res) => {
     const postData = new BlogPost({

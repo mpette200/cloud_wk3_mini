@@ -1,5 +1,3 @@
-const { add } = require("nodemon/lib/rules")
-
 class QueryPromise extends Promise {
     
     async find(...args) {
